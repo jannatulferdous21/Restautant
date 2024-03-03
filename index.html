@@ -100,10 +100,31 @@
                 width: 100%;
             }
         }
+
+        /* Style for the button */
+        .top-right-button {
+            position: absolute;
+            top: 20px;
+            /* right: 18px; */
+            right: 46px;
+
+            margin: 12px ;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 2; /* Ensure the button is above other content */
+        }
+
     </style>
 </head>
 
 <body>
+    <!-- Button added here -->
+    <button  id="button" class="top-right-button">Log is as admin</button>
+
     <div class="container">
         <h1>Find Restaurants Near You</h1>
         <form id="searchForm">
@@ -121,10 +142,6 @@
                     <p>Email: example@example.com</p>
                     <p>Phone: 123-456-7890</p>
                 </div>
-                <!-- <div class="footer-column">
-                    <h3>About Us</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero justo, eget feugiat sapien tincidunt vel.</p>
-                </div> -->
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 Your Website. All Rights Reserved.</p>
@@ -132,36 +149,10 @@
             </div>
         </div>
     </footer>
-
     <script>
-        const searchForm = document.getElementById('searchForm');
-        const restaurantList = document.getElementById('restaurantList');
-
-        const restaurants = [
-            { name: 'Restaurant A', location: '123 Main St' },
-            { name: 'Restaurant B', location: '456 Elm St' },
-            { name: 'Restaurant C', location: '789 Oak St' }
-        ];
-
-        searchForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-            const location = document.getElementById('location').value;
-            displayRestaurants(location);
+        document.getElementById('button').addEventListener('click', function() {
+            window.location.href = 'form3.html';
         });
-
-        function displayRestaurants(location) {
-            const filteredRestaurants = restaurants.filter(restaurant => restaurant.location.toLowerCase().includes(location.toLowerCase()));
-            renderRestaurants(filteredRestaurants);
-        }
-
-        function renderRestaurants(restaurants) {
-            restaurantList.innerHTML = '';
-            restaurants.forEach(restaurant => {
-                const li = document.createElement('li');
-                li.textContent = restaurant.name + ' - ' + restaurant.location;
-                restaurantList.appendChild(li);
-            });
-        }
     </script>
 </body>
 
