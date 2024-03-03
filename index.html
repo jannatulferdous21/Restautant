@@ -150,6 +150,34 @@
         </div>
     </footer>
     <script>
+        const searchForm = document.getElementById('searchForm');
+        const restaurantList = document.getElementById('restaurantList');
+
+        const restaurants = [
+            { name: 'Restaurant A', location: '123 Main St' },
+            { name: 'Restaurant B', location: '456 Elm St' },
+            { name: 'Restaurant C', location: '789 Oak St' }
+        ];
+
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const location = document.getElementById('location').value;
+            displayRestaurants(location);
+        });
+
+        function displayRestaurants(location) {
+            const filteredRestaurants = restaurants.filter(restaurant => restaurant.location.toLowerCase().includes(location.toLowerCase()));
+            renderRestaurants(filteredRestaurants);
+        }
+
+        function renderRestaurants(restaurants) {
+            restaurantList.innerHTML = '';
+            restaurants.forEach(restaurant => {
+                const li = document.createElement('li');
+                li.textContent = restaurant.name + ' - ' + restaurant.location;
+                restaurantList.appendChild(li);
+            });
+        }
         document.getElementById('button').addEventListener('click', function() {
             window.location.href = 'form3.html';
         });
