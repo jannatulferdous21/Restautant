@@ -61,29 +61,18 @@
             margin-top: 20px;
         }
 
-        th {
-            padding: 8px;
+        th, td {
+            padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+        }
+
+        th {
             background-color: #33333340; /* Deep gray color for table header */
         }
 
         td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
             background-color: #f2f2f2de; /* Light gray color for table rows */
-        }
-
-        /* tbody tr:nth-child(odd) {
-           
-            background-color: #f2f2f2; 
-        } */
-
-        @media only screen and (max-width: 600px) {
-            input[type="text"] {
-                width: 100%;
-            }
         }
 
         /* Style for the button */
@@ -117,22 +106,30 @@
         <table id="restaurantTable">
             <thead>
                 <tr>
-                    <th>Restaurant Name</th>
+                    <th>Name</th>
                     <th>Address</th>
+                    <th>Opens</th>
+                    <th>Phone</th>
                 </tr>
             </thead>
             <tbody id="restaurantList">
                 <tr>
-                    <td>Restaurant A</td>
-                    <td>123 Main St</td>
+                    <td>Chameli restaurant</td>
+                    <td>201 S Greenville Ave Ste 203 Richardson</td>
+                    <td>10:00 AM - 8:00 PM</td>
+                    <td>(123) 456-7890</td>
                 </tr>
                 <tr>
-                    <td>Restaurant B</td>
-                    <td>456 Elm St</td>
+                    <td>All Bengal</td>
+                    <td>13438 Bellaire Blvd, Houston</td>
+                    <td>11:00 AM - 9:00 PM</td>
+                    <td>(234) 567-8901</td>
                 </tr>
                 <tr>
-                    <td>Restaurant C</td>
-                    <td>789 Oak St</td>
+                    <td>Mom’s Spice</td>
+                    <td>315 E Hurst Blvd Hurst</td>
+                    <td>9:00 AM - 10:00 PM</td>
+                    <td>(345) 678-9012</td>
                 </tr>
             </tbody>
         </table>
@@ -144,9 +141,9 @@
         const restaurantList = document.getElementById('restaurantList');
 
         const restaurants = [
-            { name: 'Restaurant A', location: '123 Main St' },
-            { name: 'Restaurant B', location: '456 Elm St' },
-            { name: 'Restaurant C', location: '789 Oak St' }
+            { name: 'Chameli restaurant', address: '201 S Greenville Ave Ste 203 Richardson', timing: '10:00 AM - 8:00 PM', phone: '(123) 456-7890' },
+            { name: 'All Bengal', address: '13438 Bellaire Blvd, Houston', timing: '11:00 AM - 9:00 PM', phone: '(234) 567-8901' },
+            { name: 'Mom’s Spice', address: '315 E Hurst Blvd Hurst', timing: '9:00 AM - 10:00 PM', phone: '(345) 678-9012' }
         ];
 
         renderRestaurants(restaurants);
@@ -154,7 +151,7 @@
         searchForm.addEventListener('submit', function (event) {
             event.preventDefault();
             const location = document.getElementById('location').value;
-            const filteredRestaurants = restaurants.filter(restaurant => restaurant.location.toLowerCase().includes(location.toLowerCase()));
+            const filteredRestaurants = restaurants.filter(restaurant => restaurant.address.toLowerCase().includes(location.toLowerCase()));
             renderRestaurants(filteredRestaurants);
         });
 
@@ -162,7 +159,7 @@
             restaurantList.innerHTML = '';
             restaurants.forEach(restaurant => {
                 const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${restaurant.name}</td><td>${restaurant.location}</td>`;
+                tr.innerHTML = `<td>${restaurant.name}</td><td>${restaurant.address}</td><td>${restaurant.timing}</td><td>${restaurant.phone}</td>`;
                 restaurantList.appendChild(tr);
             });
         }
